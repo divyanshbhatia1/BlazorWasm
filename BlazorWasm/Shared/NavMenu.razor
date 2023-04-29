@@ -1,0 +1,21 @@
+﻿@using BlazorWasm.Components;
+@using Microsoft.AspNetCore.Components.Authorization;
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid justify-content-end">
+        <button class="btn btn-outline-danger" @onclick="Logout">Logout</button>
+    </div>
+</nav>
+
+@code {
+
+    [Inject] NavigationManager NavigationManager { get; set; }
+    [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    private async Task Logout()
+    {
+        await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).UpdateAuthenticationState(null);
+        StateHasChanged();
+        NavigationManager.NavigateTo("/");
+    }
+}
