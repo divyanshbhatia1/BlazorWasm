@@ -26,7 +26,6 @@ namespace BlazorWasm.Components
                 var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userSession.Username),
-                    new Claim(ClaimTypes.Role, userSession.UserRole.ToString())
                 }, "JwtAuth"));
 
                 return await Task.FromResult(new AuthenticationState(claimsPrincipal));
@@ -46,7 +45,6 @@ namespace BlazorWasm.Components
                 claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userSession.Username),
-                    new Claim(ClaimTypes.Role, userSession.UserRole.ToString())
                 }));
                 await _sessionStorage.SetItemAsync("UserSession", userSession);
             }

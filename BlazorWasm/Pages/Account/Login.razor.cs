@@ -53,9 +53,9 @@ namespace BlazorWasm.Pages.Account
 
             IsAuthenticating = true;
             var response = await ApiService.Login(username, password);
-            if (string.IsNullOrEmpty(response.Authtoken))
+            if (response.Success)
             {
-                ErrorMessage = response.LoginResponse;
+                ErrorMessage = response.Error;
                 IsAuthenticating = false;
                 return;
             }
